@@ -649,96 +649,115 @@ brawlers = [
 # List of gears
 gears = [
     {
+        "id": 1,
         "name": "SPEED",
         "description": "Gain 15% SPEED INCREASE when moving in bushes.",
         "rarity": "Rare"
     },
     {
+        "id": 2,
         "name": "HEALTH",
         "description": "RECOVER HEALTH 50% more effectively.",
         "rarity": "Rare"
     },
     {
+        "id": 3,
         "name": "DAMAGE",
         "description": "Deal 15% EXTRA DAMAGE when your Brawler is below 50% Health.",
         "rarity": "Rare"
     },
     {
+        "id": 4,
         "name": "VISION",
         "description": "REVEAL opponents for 2 seconds after dealing damage to them.",
         "rarity": "Rare"
     },
     {
+        "id": 5,
         "name": "SHIELD",
         "description": "Gain extra 900 HEALTH as a consumable SHIELD. The shield regenerates in 10 seconds, when at full health.",
         "rarity": "Rare"
     },
     {
+        "id": 6,
         "name": "RELOAD SPEED",
         "description": "15% faster RELOAD.",
         "rarity": "Super Rare"
     },
     {
+        "id": 7,
         "name": "SUPER CHARGE",
         "description": "Super CHARGES 10% FASTER.",
         "rarity": "Super Rare"
     },
     {
+        "id": 8,
         "name": "THICC HEAD",
         "description": "Tick's Head gains 1000 EXTRA HEALTH.",
         "rarity": "Epic"
     },
     {
+        "id": 9,
         "name": "TALK TO THE HAND",
         "description": "Extend the reach of Gene's Magic Hand.",
         "rarity": "Epic"
     },
     {
+        "id": 10,
         "name": "ENDURING TOXINS",
         "description": "Increases Crow's poison damage by 30%.",
         "rarity": "Epic"
     },
     {
+        "id": 11,
         "name": "STICKY SPIKES",
         "description": "Spike's Super slows 30% more effectively.",
         "rarity": "Epic"
     },
     {
+        "id": 12,
         "name": "LINGERING SMOKE",
         "description": "Leon's Smoke Bomb lasts 2 seconds longer.",
         "rarity": "Epic"
     },
     {
+        "id": 13,
         "name": "EXHAUSTING STORM",
         "description": "Enemies inside of Sandy's Sandstorm deal 20% less damage.",
         "rarity": "Epic"
     },
     {
+        "id": 14,
         "name": "STICKY OIL",
         "description": "Amber's oil spills now also slow down enemies by 10%.",
         "rarity": "Epic"
     },
     {
+        "id": 15,
         "name": "PET POWER",
         "description": "Pet power increased by 25%.",
         "rarity": "Super Rare"
     },
     {
+        "id": 16,
         "name": "QUADRUPLETS",
         "description": "Eve's Super spawns 1 extra hatchling.",
         "rarity": "Epic"
     },
     {
+        "id": 17,
         "name": "SUPER TURRET",
         "description": "Increases the healing of Pam's turret by 20%.",
         "rarity": "Epic"
     },
     {
+        "id": 18,
         "name": "GADGET CHARGE",
         "description": "Increases number of Gadget usages per battle by 1.",
         "rarity": "Rare"
     },
     {
+        "id": 19,
         "name": "BAT STORM",
         "description": "The speed of bats increased by 50%.",
         "rarity": "Epic"
@@ -765,9 +784,9 @@ def get_brawler(id):
 def get_gears():
     return jsonify(gears)
 
-@app.route('/gear/<name>', methods=['GET'])
-def get_gear(name):
-    gear = next((gear for gear in gears if gear["name"].lower() == name.lower()), "None")
+@app.route('/gear/<int:id>', methods=['GET'])
+def get_gear(id):
+    gear = next((gear for gear in gears if gear["id"] == id), None)
     if gear:
         return jsonify(gear)
     else:
