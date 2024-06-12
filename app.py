@@ -1,5 +1,7 @@
+# Import Flask library for creating web applications
 from flask import Flask, jsonify
 
+# Initialize Flask application
 app = Flask(__name__)
 
 # List of brawlers
@@ -764,33 +766,41 @@ gears = [
     }
 ]
 
+# Route for the home page, providing instructions on how to use the API
 @app.route('/')
 def home():
-    return "Welcome to the Brawlers and Gears API! Use /brawlers to get the list of all brawlers, /brawler/<id> to get details of an individual brawler, /gears to get the list of all gears, or /gear/<name> to get details of an individual gear."
+    return "Welcome to the Brawlers and Gears API! Use /brawlers to get the list of all brawlers, /brawler/<id> to get details of an individual brawler, /gears to get the list of all gears, or /gear/<id> to get details of an individual gear."
 
+# Route to get the list of all brawlers
 @app.route('/brawlers', methods=['GET'])
 def get_brawlers():
-    return jsonify(brawlers)
+    return jsonify(brawlers)  # Return JSON representation of the list of brawlers
 
+# Route to get details of an individual brawler based on ID
 @app.route('/brawler/<int:id>', methods=['GET'])
 def get_brawler(id):
+    # Find the brawler with the specified ID, return its details or an error if not found
     brawler_info = next((b for b in brawlers if b['id'] == id), None)
     if brawler_info:
         return jsonify(brawler_info)
     else:
         return jsonify({"error": "Brawler not found"}), 404
 
+# Route to get the list of all gears
 @app.route('/gears', methods=['GET'])
 def get_gears():
-    return jsonify(gears)
+    return jsonify(gears)  # Return JSON representation of the list of gears
 
+# Route to get details of an individual gear based on ID
 @app.route('/gear/<int:id>', methods=['GET'])
 def get_gear(id):
+    # Find the gear with the specified ID, return its details or an error if not found
     gear = next((gear for gear in gears if gear["id"] == id), None)
     if gear:
         return jsonify(gear)
     else:
         return jsonify({"error": "Gear not found"}), 404
 
+# Run the Flask application in debug mode
 if __name__ == '__main__':
     app.run(debug=True)
