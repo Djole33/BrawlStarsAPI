@@ -771,7 +771,7 @@ gears = [
 # Route for the home page, providing instructions on how to use the API
 @app.route('/')
 def home():
-    return "Welcome to the Brawlers and Gears API! Use /brawlers to get the list of all brawlers, /brawler/<id> to get details of an individual brawler, /gears to get the list of all gears, or /gear/<id> to get details of an individual gear."
+    return "Welcome to the Brawlers and Gears API! Use /brawlers to get the list of all brawlers, /brawler/id to get details of an individual brawler, /gears to get the list of all gears, or /gear/id to get details of an individual gear."
 
 # Route to get the list of all brawlers
 @app.route('/brawlers', methods=['GET'])
