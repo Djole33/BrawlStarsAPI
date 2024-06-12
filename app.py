@@ -1,8 +1,10 @@
 # Import Flask library for creating web applications
 from flask import Flask, jsonify
+import os
 
 # Initialize Flask application
 app = Flask(__name__)
+port = int(os.getenv('PORT', 4000))
 
 # List of brawlers
 brawlers = [
@@ -803,4 +805,4 @@ def get_gear(id):
 
 # Run the Flask application in debug mode
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=port)
